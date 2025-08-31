@@ -98,12 +98,15 @@ _ _
 
         while self.__char_array != country_name_list and self.__attempts < self.__max_attempts:
             guess = input("Enter a Letter: ").lower()
-            # if len(guess) != 1 or not guess.isalpha():
-            #     print("Invalid input. Please enter a single letter.")
-            #     continue
+            guess = guess.strip()
+            if len(guess) != 1 or not guess.isalpha() or len(guess) == 0 or guess.isspace():
+                print("Invalid input. Please enter a single letter.")
+                print()
+                continue
 
             if guess in self.__guessed_letters:
                 print("You've already guessed that letter.")
+                print()
                 continue
 
             self.__guessed_letters.add(guess)
