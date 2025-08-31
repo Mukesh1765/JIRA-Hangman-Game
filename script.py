@@ -15,6 +15,8 @@ def get_random_country_names(file_path):
         country_names = [row[0] for row in reader]
 
     selected_countries = random.sample(country_names, k=10)
+    if not selected_countries:
+        raise ValueError("No countries found.")
     return selected_countries
 
 print(get_random_country_names('./countries.csv'))
