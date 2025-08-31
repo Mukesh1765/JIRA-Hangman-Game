@@ -53,10 +53,10 @@ class Hangman:
   ====="""]
 
     def __init__(self):
-        self.__country_name = self.get_country_name(self.get_random_country_names('./countries.csv')).lower()
+        self.__country_name = self.__get_country_name(self.__get_random_country_names('./countries.csv')).lower()
         self.__guessed_letters = set()
         self.__max_attempts = 5
-        self.__char = ['_' for _ in self.__country_name]
+        self.__char_array = ['_' for _ in self.__country_name]
         self.__attempts = 0
 
     def start_game(self):
@@ -75,9 +75,29 @@ _ _
         print("Rules: 5 attempts, case-insensitive, no cheating!", end = "\n"); 
         print("Type your guess and press Enter. Let's begin!", end = "\n"); 
         print()
+        print("you can guess until man body complete")
+        print("initial_condition : ")
+        print(self.hangman_symbols[0])
+
+        print("if you reach the last stage, you lose!")
+        print("last stage:")
+        print(self.hangman_symbols[-1])
+
+        print()
+        print()
+
+        print("Lets start the game!")
+        print(f"The country name has {len(self.__country_name)} letters.")
+        print()
+
+        self.__game_logic()
+
+
+    def __game_logic(self):
+        print(" ".join(self.__char_array))
 
     @staticmethod
-    def get_random_country_names(file_path):
+    def __get_random_country_names(file_path):
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"The file at path '{file_path}' was not found.")
         if not os.access(file_path, os.R_OK):
@@ -95,7 +115,7 @@ _ _
         return selected_countries
 
     @staticmethod
-    def get_country_name(countries):
+    def __get_country_name(countries):
         if not countries:
             raise ValueError("No countries available.")
         return random.choice(countries)
