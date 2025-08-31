@@ -19,4 +19,9 @@ def get_random_country_names(file_path):
         raise ValueError("No countries found.")
     return selected_countries
 
-print(get_random_country_names('./countries.csv'))
+def get_country_name(countries):
+    if not countries:
+        raise ValueError("No countries available.")
+    return random.choice(countries)
+
+print(get_country_name(get_random_country_names('./countries.csv')))
