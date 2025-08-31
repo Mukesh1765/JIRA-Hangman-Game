@@ -26,10 +26,60 @@ def get_country_name(countries):
     return random.choice(countries)
 
 class Hangman:
+    hangman_symbols = [r"""
+   +--+
+   |  |
+      |
+      |
+      |
+      |
+  =====""",
+    r"""
+  +--+
+  |  |
+  O  |
+     |
+     |
+     |
+ =====""",
+    r"""
+  +--+
+  |  |
+  O  |
+  |  |
+     |
+     |
+ =====""",
+    r"""
+  +--+
+  |  |
+  O  |
+ /|  |
+     |
+     |
+ =====""",
+    r"""
+  +--+
+  |  |
+  O  |
+ /|\ |
+     |
+     |
+ =====""",
+    r"""
+  +--+
+  |  |
+  O  |
+ /|\ |
+ / \ |
+     |
+  ====="""]
+
     def __init__(self):
-        self.__country_name = get_country_name(get_random_country_names('./countries.csv'))
+        self.__country_name = get_country_name(get_random_country_names('./countries.csv')).lower()
         self.__guessed_letters = set()
         self.__max_attempts = 5
+        self.__char = ['_' for _ in self.__country_name]
         self.__attempts = 0
 
     def start_game(self):
@@ -48,8 +98,6 @@ class Hangman:
         print("Rules: 5 attempts, case-insensitive, no cheating!", end = "\n"); 
         print("Type your guess and press Enter. Let's begin!", end = "\n"); 
         print()
-
-        # print(self.__country_name)
 
 if __name__ == "__main__":
     game = Hangman()
